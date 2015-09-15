@@ -1,1 +1,3 @@
-include ':app', ':MaterialTabsModule'
+include ':app'
+include ':MaterialTabsModule'
+project(':MaterialTabsModule').projectDir=new File('../MaterialTabsModule')

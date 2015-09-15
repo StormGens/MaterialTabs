@@ -23,6 +23,7 @@ public class MainActivity extends ListActivity implements AdapterView.OnItemClic
         list.add("Swipable Text Tabs (more than 3)");
         list.add("Icon Tab");
         list.add("Swipable Icon Tab (more than 5)");
+        list.add("底部带文字和icon的Tab");
 
         this.setListAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list));
         this.getListView().setOnItemClickListener(this);
@@ -43,6 +44,9 @@ public class MainActivity extends ListActivity implements AdapterView.OnItemClic
                 break;
             case 3:
                 intent = new Intent(this,SwipableIconTabActivity.class);
+                break;
+            case 4:
+                intent = new Intent(this,TextIconTabActivity.class);
                 break;
             default:
                 intent = null;

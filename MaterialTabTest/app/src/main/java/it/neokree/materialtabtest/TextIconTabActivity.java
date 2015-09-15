@@ -1,8 +1,6 @@
 package it.neokree.materialtabtest;
 
-
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,24 +14,21 @@ import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
 import it.neokree.materialtabs.MaterialTabListener;
 
-/**
- * Created by neokree on 30/12/14.
- */
-public class IconTabActivity extends AppCompatActivity implements MaterialTabListener {
+public class TextIconTabActivity extends AppCompatActivity implements MaterialTabListener {
+
+    private MaterialTabHost tabHost;
     private ViewPager pager;
     private ViewPagerAdapter pagerAdapter;
-    MaterialTabHost tabHost;
+
     private Resources res;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_icons);
+        setContentView(R.layout.activity_text_icon_tab);
         res = this.getResources();
-        // init toolbar (old action bar)
-
-        Toolbar toolbar = (Toolbar) this.findViewById(R.id.toolbar);
-        toolbar.setTitleTextColor(Color.WHITE);
-        this.setSupportActionBar(toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         tabHost = (MaterialTabHost) this.findViewById(R.id.tabHost);
         pager = (ViewPager) this.findViewById(R.id.pager);
@@ -55,22 +50,26 @@ public class IconTabActivity extends AppCompatActivity implements MaterialTabLis
                             .setTabListener(this)
             );
         }
+
     }
+
     @Override
     public void onTabSelected(MaterialTab tab) {
-// when the tab is clicked the pager swipe content to the tab position
         pager.setCurrentItem(tab.getPosition());
     }
 
     @Override
     public void onTabReselected(MaterialTab tab) {
+
     }
 
     @Override
     public void onTabUnselected(MaterialTab tab) {
+
     }
 
-   private class ViewPagerAdapter extends FragmentStatePagerAdapter {
+
+    private class ViewPagerAdapter extends FragmentStatePagerAdapter {
         public ViewPagerAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -79,7 +78,7 @@ public class IconTabActivity extends AppCompatActivity implements MaterialTabLis
         }
         @Override
         public int getCount() {
-            return 3;
+            return 4;
         }
         @Override
         public CharSequence getPageTitle(int position) {
@@ -90,12 +89,13 @@ public class IconTabActivity extends AppCompatActivity implements MaterialTabLis
                 default: return null;
             }
         }
-   }
+    }
+
     /*
-    * It doesn't matter the color of the icons, but they must have solid colors
-    */
+* It doesn't matter the color of the icons, but they must have solid colors
+*/
     private Drawable getIcon(int position) {
-        switch(position) {
+        switch(position%3) {
             case 0:
                 return res.getDrawable(R.drawable.ic_person_black_24dp);
             case 1:
